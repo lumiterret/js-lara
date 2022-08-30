@@ -17,7 +17,7 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-app-init: app-perm app-composer-install app-assets-install  app-ready
+app-init: app-perm app-composer-install app-keygen app-assets-install app-migration app-ready
 
 app-clear:
 	docker run --rm -v ${PWD}:/app --workdir=/app alpine rm -f .ready
@@ -28,6 +28,10 @@ app-ready:
 app-perm:
 	docker-compose run --rm php-cli chgrp www-data -R storage/
 	docker-compose run --rm php-cli chmod 775 -R storage
+
+app-keygen:
+	docker run --rm -v ${PWD}:/app --workdir=/app alpine cp .env.example .env
+	docker-compose run --rm php-cli php artisan key:generate
 
 app-composer-install:
 	docker-compose run --rm php-cli composer install
