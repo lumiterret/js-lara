@@ -14,8 +14,8 @@
         <!-- Scripts -->
 {{--        @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
     </head>
-    <body>
-        <div class="font-sans text-gray-900 antialiased">
+    <body class="login-page">
+        <div class="login-box">
             {{ $slot }}
         </div>
         <script src="./js/app.js"></script>
