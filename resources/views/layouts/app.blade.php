@@ -13,21 +13,31 @@
         <!-- Scripts -->
 {{--        @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+    <body class="sidebar-mini layout-fixed" style="height: auto">
+        <div class="wrapper">
             @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
+            <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                @include('layouts.main-nav')
+            </aside>
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
+            <main class="content-wrapper">
+                <!-- Page Heading -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        {{ $header }}
+                    </div>
+                </section>
+                <section class="content">
+                    <div class="container-fluid">
+                        {{ $slot }}
+                    </div>
+                </section>
             </main>
+            <footer class="main-footer">
+                <div class="float-right d-none d-sm-block">
+                </div>
+                <strong>{{ date('d.m.Y') }} <a href="https://toyrik.github.io">Toy Rik</a>.</strong>
+            </footer>
         </div>
         <script src="./js/app.js"></script>
     </body>
